@@ -15,5 +15,4 @@ global ft_atoi
 extern ft_atol
 
 ft_atoi:
-	call ft_atol
-	ret
+	jmp ft_atol

@@ -17,5 +17,4 @@ extern ft_memset
 ft_bzero:
 	mov rdx, rsi
 	xor sil, sil
-	call ft_memset
-	ret
+	jmp ft_memset
