@@ -1,7 +1,7 @@
 ;******************************************************************************;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    libftasm.s                                         :+:      :+:    :+:    ;
+;    libftasm.mac                                       :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: abouvier <abouvier@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
@@ -10,15 +10,24 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-%ifndef LIBFTASM_S
-%define LIBFTASM_S
+%ifndef LIBFTASM_MAC
+%define LIBFTASM_MAC
 
 %macro _syscall 1
+%ifdef __APPLE__
 	mov rax, 2000000h + %1
+%else
+	mov rax, %1
+%endif
 	syscall
 %endmacro
 
+%ifdef __APPLE__
 %define read  _syscall(3)
 %define write _syscall(4)
+%else
+%define read  _syscall(0)
+%define write _syscall(1)
+%endif
 
 %endif
