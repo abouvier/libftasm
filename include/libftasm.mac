@@ -16,10 +16,11 @@
 %macro _syscall 1
 %ifdef __APPLE__
 	mov rax, 2000000h + %1
-	syscall
 %else
 	mov rax, %1
+%endif
 	syscall
+%ifndef __APPLE__
 	bt rax, 63
 %endif
 %endmacro
