@@ -26,11 +26,18 @@
 %endmacro
 
 %ifdef __APPLE__
-%define read  _syscall(3)
-%define write _syscall(4)
+%define read   _syscall(3)
+%define write  _syscall(4)
+%define writev _syscall(121)
 %else
-%define read  _syscall(0)
-%define write _syscall(1)
+%define read   _syscall(0)
+%define write  _syscall(1)
+%define writev _syscall(20)
 %endif
+
+struc iovec
+	.iov_base resq 1
+	.iov_len  resq 1
+endstruc
 
 %endif

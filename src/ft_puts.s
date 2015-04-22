@@ -19,25 +19,28 @@ ft_puts:
 	jnz puts
 	lea rdi, [rel nullstr]
 puts:
-	push rdi
+	mov [iov], rdi
 	call ft_strlen
+	mov [iov + iovec.iov_len], rax
+
+	lea rax, [rel newline]
+	mov [iov + iovec_size], rax
+	mov qword [iov + iovec_size + iovec.iov_len], 1
+
 	mov rdi, 1
-	pop rsi
-	mov rdx, rax
-	write
+	lea rsi, [rel iov]
+	mov rdx, 2
+	writev
 	jc error
-	mov rdi, 1
-	lea rsi, [rel newline]
-	mov rdx, 1
-	write
-	jc error
-	mov eax, [rel newline]
-kthxbye:
+	movzx eax, byte [rel newline]
 	ret
 
 error:
 	mov eax, -1
-	jmp kthxbye
+	ret
+
+section .bss
+iov resb iovec_size * 2
 
 section .rodata
 nullstr db `(null)\0`
