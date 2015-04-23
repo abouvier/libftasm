@@ -22,19 +22,16 @@ puts:
 	mov [iov], rdi
 	call ft_strlen
 	mov [iov + iovec.iov_len], rax
-
-	lea rax, [rel newline]
-	mov [iov + iovec_size], rax
+	lea rdi, [rel newline]
+	mov [iov + iovec_size], rdi
 	mov qword [iov + iovec_size + iovec.iov_len], 1
-
-	mov rdi, 1
+	mov rdi, stdout
 	lea rsi, [rel iov]
 	mov rdx, 2
 	writev
 	jc error
-	movzx eax, byte [rel newline]
+	mov eax, `\n`
 	ret
-
 error:
 	mov eax, -1
 	ret

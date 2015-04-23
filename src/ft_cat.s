@@ -21,7 +21,7 @@ cat:
 	jc kthxbye
 	test rax, rax
 	jz kthxbye
-	mov rdi, 1
+	mov rdi, stdout
 	lea rsi, [rel buffer]
 	mov rdx, rax
 	write
