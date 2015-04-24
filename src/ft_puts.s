@@ -6,7 +6,7 @@
 ;    By: abouvier <abouvier@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/01/29 20:44:24 by abouvier          #+#    #+#              ;
-;    Updated: 2015/02/01 01:08:48 by abouvier         ###   ########.fr        ;
+;    Updated: 2015/04/24 12:31:01 by abouvier         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -14,19 +14,21 @@ global ft_puts
 
 extern ft_strlen
 
+default rel
+
 ft_puts:
 	test rdi, rdi
 	jnz puts
-	lea rdi, [rel nullstr]
+	lea rdi, [nullstr]
 puts:
 	mov [iov], rdi
 	call ft_strlen
 	mov [iov + iovec.iov_len], rax
-	lea rdi, [rel newline]
+	lea rdi, [newline]
 	mov [iov + iovec_size], rdi
 	mov qword [iov + iovec_size + iovec.iov_len], 1
 	mov rdi, stdout
-	lea rsi, [rel iov]
+	lea rsi, [iov]
 	mov rdx, 2
 	writev
 	jc error
