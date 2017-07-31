@@ -11,6 +11,7 @@
 ;******************************************************************************;
 
 %include "libftasm.mac"
+%include "syscall.mac"
 
 global ft_puts
 
@@ -32,7 +33,7 @@ puts:
 	mov rdi, stdout
 	lea rsi, [iov]
 	mov rdx, 2
-	writev
+	syscall writev
 	jc error
 	mov eax, `\n`
 	ret

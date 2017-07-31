@@ -11,6 +11,7 @@
 ;******************************************************************************;
 
 %include "libftasm.mac"
+%include "syscall.mac"
 
 global ft_cat
 
@@ -19,14 +20,14 @@ ft_cat:
 cat:
 	lea rsi, [rel buffer]
 	mov rdx, buffer.size
-	read
+	syscall read
 	jc kthxbye
 	test rax, rax
 	jz kthxbye
 	mov rdi, stdout
 	lea rsi, [rel buffer]
 	mov rdx, rax
-	write
+	syscall write
 	jc kthxbye
 	mov rdi, [rsp]
 	jmp cat
