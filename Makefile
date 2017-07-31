@@ -12,37 +12,51 @@
 
 NAME = libfts.a
 AS = nasm
+ASFLAGS = -MD $(@:.o=.d) -Isrc/
 ifeq ($(shell uname),Darwin)
-ASFLAGS = -fmacho64 -D__APPLE__ --prefix _
+	ASFLAGS += --prefix _ -D__APPLE__
+	TARGET_MACH = -fmacho64
 else
-ASFLAGS = -felf64
+	ASFLAGS += -D__linux__
+	TARGET_MACH = -felf64
 endif
-CPPFLAGS = -MD $(@:.o=.d) -Isrc/
-builddir = build
-srcdir = src
-SRCS = ft_bzero.s ft_strcat.s ft_isalpha.s ft_isupper.s ft_islower.s \
-ft_isdigit.s ft_isalnum.s ft_isascii.s ft_isprint.s ft_toupper.s ft_tolower.s \
-ft_puts.s ft_strlen.s ft_memset.s ft_memcpy.s ft_strdup.s ft_cat.s ft_strchr.s \
-ft_strcmp.s ft_isspace.s ft_atoi.s ft_atol.s ft_strjoin.s
-OBJS := $(patsubst %.s,$(builddir)/%.o,$(SRCS))
+VPATH = src
+SRCS = \
+	ft_atoi.s \
+	ft_atol.s \
+	ft_bzero.s \
+	ft_cat.s \
+	ft_isalnum.s \
+	ft_isalpha.s \
+	ft_isascii.s \
+	ft_isdigit.s \
+	ft_islower.s \
+	ft_isprint.s \
+	ft_isspace.s \
+	ft_isupper.s \
+	ft_memcpy.s \
+	ft_memset.s \
+	ft_puts.s \
+	ft_strcat.s \
+	ft_strchr.s \
+	ft_strcmp.s \
+	ft_strdup.s \
+	ft_strjoin.s \
+	ft_strlen.s \
+	ft_tolower.s \
+	ft_toupper.s
+OBJS := $(SRCS:%.s=$(VPATH)/%.o)
 DEPS := $(OBJS:.o=.d)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $@ $?
+$(NAME): $(NAME)($(OBJS))
 	ranlib $@
 
-$(OBJS): Makefile | $(builddir)
-
-$(builddir):
-	mkdir -p $@
-
-$(builddir)/%.o: $(srcdir)/%.s
-	$(AS) $(ASFLAGS) $(CPPFLAGS) $(OUTPUT_OPTION) $<
+$(OBJS): Makefile
 
 clean:
-	$(RM) -R $(builddir)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
