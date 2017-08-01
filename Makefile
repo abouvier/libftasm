@@ -40,6 +40,7 @@ SRCS = \
 	ft_strcat.s \
 	ft_strchr.s \
 	ft_strcmp.s \
+	ft_strcpy.s \
 	ft_strdup.s \
 	ft_strjoin.s \
 	ft_strlen.s \

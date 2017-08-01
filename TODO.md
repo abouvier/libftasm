@@ -12,3 +12,5 @@
 - [x] utiliser writev dans ft_puts
 - [x] remplacer call par jmp dans ft_atoi et ft_bzero
 - [ ] utiliser ft_strcpy dans ft_strdup
+- [x] ft_strcpy
+- [ ] utiliser ft_strcpy dans ft_strcat
