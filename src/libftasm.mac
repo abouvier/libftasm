@@ -15,4 +15,10 @@
 
 %define stdout 1
 
+%ifdef __linux__
+	%imacro call 1
+		%? %1 wrt ..plt
+	%endmacro
+%endif
+
 %endif
