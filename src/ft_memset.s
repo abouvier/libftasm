@@ -13,9 +13,9 @@
 global ft_memset
 
 ft_memset:
-	mov [rsp - 8], rdi
+	mov r8, rdi
 	mov al, sil
 	mov rcx, rdx
 	rep stosb
-	mov rax, [rsp - 8]
+	mov rax, r8
 	ret
