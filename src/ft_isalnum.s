@@ -11,8 +11,8 @@
 ;******************************************************************************;
 
 global ft_isalnum
-
-extern ft_isalpha, ft_isdigit
+extern ft_isalpha
+extern ft_isdigit
 
 ft_isalnum:
 	push rdi

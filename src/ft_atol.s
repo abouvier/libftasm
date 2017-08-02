@@ -11,8 +11,8 @@
 ;******************************************************************************;
 
 global ft_atol
-
-extern ft_isspace, ft_isdigit
+extern ft_isspace
+extern ft_isdigit
 
 ft_atol:
 	sub rsp, 24

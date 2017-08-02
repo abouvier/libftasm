@@ -13,8 +13,8 @@
 %include "libftasm.mac"
 
 global ft_strjoin
-
-extern ft_strlen, malloc
+extern ft_strlen
+extern malloc
 
 ft_strjoin:
 	sub rsp, 32

@@ -14,7 +14,6 @@
 %include "syscall.mac"
 
 global ft_puts
-
 extern ft_strlen
 
 default rel

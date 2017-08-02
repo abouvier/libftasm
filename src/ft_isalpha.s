@@ -11,8 +11,8 @@
 ;******************************************************************************;
 
 global ft_isalpha
-
-extern ft_isupper, ft_islower
+extern ft_isupper
+extern ft_islower
 
 ft_isalpha:
 	push rdi
