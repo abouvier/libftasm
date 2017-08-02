@@ -11,19 +11,16 @@
 ;******************************************************************************;
 
 global ft_strcat
+extern ft_strcpy
 
 ft_strcat:
-	mov rax, rdi
+	push rdi
 hello:
 	cmp byte [rdi], 0
 	je kitty
 	inc rdi
 	jmp hello
 kitty:
-	cmp byte [rsi], 0
-	je kthxbye
-	movsb
-	jmp kitty
-kthxbye:
-	mov byte [rdi], 0
+	call ft_strcpy
+	pop rax
 	ret
