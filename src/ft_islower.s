@@ -10,14 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-global ft_islower
+%include "ft_is.mac"
 
-ft_islower:
-	xor eax, eax
-	cmp edi, 'a'
-	jl kthxbye
-	cmp edi, 'z'
-	jg kthxbye
-	inc al
-kthxbye:
-	ret
+ft_is lower, 'a', 'z'

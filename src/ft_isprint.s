@@ -10,14 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-global ft_isprint
+%include "ft_is.mac"
 
-ft_isprint:
-	xor eax, eax
-	cmp edi, ' '
-	jl kthxbye
-	cmp edi, '~'
-	jg kthxbye
-	inc al
-kthxbye:
-	ret
+ft_is print, ' ', '~'

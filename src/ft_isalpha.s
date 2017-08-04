@@ -10,17 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-global ft_isalpha
-extern ft_isupper
-extern ft_islower
+%include "ft_is.mac"
 
-ft_isalpha:
-	push rdi
-	call ft_isupper
-	test al, 1
-	jnz kthxbye
-	mov edi, [rsp]
-	call ft_islower
-kthxbye:
-	add rsp, 8
-	ret
+ft_is alpha, 'A', 'Z'

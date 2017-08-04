@@ -10,14 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-global ft_isascii
+%include "ft_is.mac"
 
-ft_isascii:
-	xor eax, eax
-	cmp edi, 0
-	jl kthxbye
-	cmp edi, 127
-	jg kthxbye
-	inc al
-kthxbye:
-	ret
+ft_is ascii, 0, 127

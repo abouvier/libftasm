@@ -10,14 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-global ft_isdigit
+%include "ft_is.mac"
 
-ft_isdigit:
-	xor eax, eax
-	cmp edi, '0'
-	jl kthxbye
-	cmp edi, '9'
-	jg kthxbye
-	inc al
-kthxbye:
-	ret
+ft_is digit, '0', '9'

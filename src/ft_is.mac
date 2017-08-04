@@ -1,15 +1,38 @@
 ;******************************************************************************;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_isspace.s                                       :+:      :+:    :+:    ;
+;    ft_is.mac                                          :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: abouvier <abouvier@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
-;    Created: 2015/02/02 03:25:17 by abouvier          #+#    #+#              ;
-;    Updated: 2015/02/02 03:25:29 by abouvier         ###   ########.fr        ;
+;    Created: 2015/02/03 18:49:01 by abouvier          #+#    #+#              ;
+;    Updated: 2015/04/24 12:11:52 by abouvier         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
-%include "ft_is.mac"
+%ifndef FT_IS_MAC
+%define FT_IS_MAC
 
-ft_is space, `\t`, `\r`
+%macro ft_is 3
+global ft_is%1
+
+ft_is%1:
+	xor eax, eax
+%ifidn %1, alpha
+	and edi, -33 ; o_O
+%elifidn %1, space
+	cmp edi, ' '
+	je .kthxbye
+%endif
+%if %2 != 0
+	sub edi, %2
+%endif
+	cmp edi, %3 - %2
+%ifidn %1, space
+.kthxbye:
+%endif
+	setbe al
+	ret
+%endmacro
+
+%endif

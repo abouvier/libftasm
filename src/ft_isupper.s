@@ -10,14 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-global ft_isupper
+%include "ft_is.mac"
 
-ft_isupper:
-	xor eax, eax
-	cmp edi, 'A'
-	jl kthxbye
-	cmp edi, 'Z'
-	jg kthxbye
-	inc al
-kthxbye:
-	ret
+ft_is upper, 'A', 'Z'
