@@ -15,12 +15,9 @@ extern ft_strcpy
 
 ft_strcat:
 	push rdi
-hello:
-	cmp byte [rdi], 0
-	je kitty
-	inc rdi
-	jmp hello
-kitty:
+	xor al, al
+	mov rcx, -1
+	repne scasb
 	call ft_strcpy
 	pop rax
 	ret
