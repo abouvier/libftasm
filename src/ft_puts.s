@@ -10,7 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-%include "libftasm.mac"
 %include "syscall.mac"
 
 global ft_puts

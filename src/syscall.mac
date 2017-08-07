@@ -42,4 +42,6 @@ struc iovec
 	.iov_len resq 1
 endstruc
 
+%idefine stdout 1
+
 %endif
