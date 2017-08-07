@@ -10,8 +10,6 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-%include "libftasm.mac"
-
 global ft_strjoin
 extern ft_strlen
 extern malloc

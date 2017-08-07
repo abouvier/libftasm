@@ -1,7 +1,7 @@
 ;******************************************************************************;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    libftasm.mac                                       :+:      :+:    :+:    ;
+;    call.mac                                           :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: abouvier <abouvier@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
@@ -10,15 +10,17 @@
 ;                                                                              ;
 ;******************************************************************************;
 
-%ifndef LIBFTASM_MAC
-%define LIBFTASM_MAC
+%ifndef CALL_MAC
+%define CALL_MAC
 
-%define stdout 1
-
-%ifdef __linux__
-	%imacro call 1
-		%? %1 wrt ..plt
-	%endmacro
+%imacro call 1
+%defstr function %1
+%substr prefix function 0, 3
+%ifnidn prefix, 'ft_'
+	%? %1 wrt ..plt
+%else
+	%? %1
 %endif
+%endmacro
 
 %endif

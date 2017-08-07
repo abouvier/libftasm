@@ -17,7 +17,7 @@ ifeq ($(shell uname),Darwin)
 	ASFLAGS += --prefix _ -D__APPLE__
 	TARGET_MACH = -fmacho64
 else
-	ASFLAGS += -D__linux__
+	ASFLAGS += -Psrc/call.mac -D__linux__
 	TARGET_MACH = -felf64
 endif
 VPATH = src
