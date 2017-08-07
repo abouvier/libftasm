@@ -34,7 +34,9 @@ puts:
 	mov rdx, 2
 	syscall writev
 	jc error
+%ifdef __APPLE__
 	mov eax, `\n`
+%endif
 	ret
 error:
 	mov eax, -1
