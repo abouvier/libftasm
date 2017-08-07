@@ -28,13 +28,13 @@
 %endmacro
 
 %ifdef __APPLE__
-	%idefine read 3
-	%idefine write 4
-	%idefine writev 121
+%idefine read 3
+%idefine write 4
+%idefine writev 121
 %else
-	%idefine read 0
-	%idefine write 1
-	%idefine writev 20
+%idefine read 0
+%idefine write 1
+%idefine writev 20
 %endif
 
 struc iovec
